@@ -19,20 +19,22 @@
 
 
 template <typename _Ty, typename _Comp>
-void InsertionSort(_Ty *arr, int size, _Comp comp = greater<_Ty>())
+void InsertionSort(_Ty *arr, int size, _Comp comp = greater<_Ty>(), int gap = 1)
 {
-    int current_pos = 1;
-    _Ty current_item = arr[current_pos];
-    
-    for(; current_pos <= size; ++current_pos)
-    {    
-        current_item = arr[current_pos];
-        int i = current_pos - 1;
-        for(; i >= 0 && comp(arr[i], current_item); --i)
+    _Ty temp = arr[gap];
+    int next = gap;
+    for(int i = 0; i < gap; ++i)
+    {
+        for(int cur = i + gap; cur < size; cur += gap)
         {
-            arr[i + 1] = arr[i];
+            temp = arr[cur];
+            int prev = cur - gap;
+            for(; prev >= 0 && comp(arr[prev], temp); prev -= gap)
+            {
+                arr[prev + gap] = arr[prev];
+            }
+            arr[prev + gap] = temp;
         }
-        arr[i + 1] = current_item;
     }
 }
 
