@@ -2,6 +2,7 @@
 #include <iostream>
 #include <functional>
 
+#include "heapsort.hpp"
 #include "shellsort.hpp"
 #include "insertionsort.hpp"
 #include "bubblesort.hpp"
@@ -47,7 +48,8 @@ int main()
     //QuickSort(arr, size, greater<int>());
     //MergeSort(arr, size, greater<int>());
     //InsertionSort(arr, size, greater<int>());
-    ShellSort(arr, size, greater<int>());
+    //ShellSort(arr, size, greater<int>());
+    HeapSort(arr, size, greater<int>());
 	Print_1(arr, arr + size);
 	return 0;
 }
